@@ -1,21 +1,26 @@
 #include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
- * ordre - sort the elements of the array in descending order
+ * main - sort the elements of the array in descending order
  *
  * Return: 0 (success)
  */
 
-int ordre(void)
+int main()
 {
-	int t[8] = {10, 12, 15, 13, 14, 19, 20, 18};
+	int t[8];
 	int i, j, tmp;
 
-	for (i = 0 ; i < 8 ; i++)
+	printf("Veuillez saisir les elements du tableau : \n");
+	for (i = 0; i < 8; i++)
 	{
-		for (j = i + 1 ; j < 8 ; j++)
+		printf("t[%d] = ", i + 1);
+		scanf("%d", &t[i]);
+	}
+	for (i = 0; i < 8; i++)
+	{
+		for (j = i + 1; j < 8; j++)
 		{
 			if (t[i] < t[j])
 			{
@@ -25,9 +30,8 @@ int ordre(void)
 			}
 		}
 	}
-
-	printf("\n les elements du tableau par ordre croissant sont :");
-	for (i = 0 ; i < 8 ; i++)
-	printf("\n%d", t[i]);
+	printf("\n les elements du tableau par ordre croissant sont : ");
+	for (i = 0; i < 8; i++)
+		printf("\n%dt", t[i]);
 	return (0);
 }
