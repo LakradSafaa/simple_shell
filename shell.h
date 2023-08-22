@@ -10,4 +10,6 @@
 int main();
 int main();
 int main();
+void exitShell();
+int main();
 #endif
