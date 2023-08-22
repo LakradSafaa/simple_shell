@@ -37,7 +37,7 @@ int main() {
         int arg_count = 0;
 
         char *token = strtok(input, " ");
-        while (token != NULL && arg_count < 25) {
+ while (token != NULL && arg_count < 25) {
             arguments[arg_count++] = token;
             token = strtok(NULL, " ");
         }
@@ -76,7 +76,7 @@ int main() {
                 perror("Command execution failed");
                 exit(EXIT_FAILURE);
             }
-        } else { // Parent process
+ } else { // Parent process
             int status;
             waitpid(ps, &status, 0);
         }
