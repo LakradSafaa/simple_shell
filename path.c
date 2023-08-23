@@ -32,21 +32,21 @@ debut:
 		goto debut;
 	}
 	char *arguments[25];
-	int arg_count = ;
+	int arg_count = 0;
 	char *token = strtok(input, " ");
-	
-	while (token != NULL && arg_count <25)
+
+	while (token != NULL && arg_count < 25)
 	{
 		arguments[arg_count++] = token;
 		token = strtok(NULL, " ");
 	}
 	arguments[arg_count] = NULL;
 	char *path = getenv("PATH");
-        char *path_copy = strdup(path);
-        char *path_token = strtok(path_copy, ":");
-        char command_path[256];
+	char *path_copy = strdup(path);
+	char *path_token = strtok(path_copy, ":");
+	char command_path[256];
 
-        while (path_token != NULL)
+	while (path_token != NULL)
 	{
 		snprintf(command_path, sizeof(command_path), "%s/%s", path_token, arguments[0]);
 		if (access(command_path, X_OK) == 0)
@@ -62,6 +62,7 @@ debut:
 		goto debut;
 	}
 	pid_t ps = fork();
+
 	if (fork() < 0)
 	{
 		perror("Fork failed");
@@ -78,6 +79,7 @@ debut:
 	else
 	{
 		int status;
+		
 		waitpid(ps, &status, 0);
 	}
 	goto debut;

@@ -11,8 +11,7 @@ int main()
 	char cmmndline[256];
 	char *prompt = "$ :";
 	pid_t ps;
-
-	while (1)
+debut:
 	{
 		printf("%s", prompt);
 		if (fgets(cmmndline, sizeof(cmmndline), stdin) == NULL)
@@ -20,7 +19,7 @@ int main()
 			if (feof(stdin))
 			{
 				printf("\n Ctrl+D pressed.\n");
-				break;
+				return(0);
 			}
 			else
 			{
@@ -31,7 +30,7 @@ int main()
 		cmmndline[strcspn(cmmndline, "\n")] = '\0';
 		if (strlen(cmmndline) == 0)
 		{
-			continue;
+			goto debut;
 		}
 		ps = fork();
 		if (ps < 0)
