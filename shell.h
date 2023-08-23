@@ -14,4 +14,5 @@ int main();
 int main();
 void exitShell();
 int main();
+int main();
 #endif
