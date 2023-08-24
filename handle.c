@@ -6,6 +6,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/**
+ * main - handling command lines with arguments
+ *
+ * Return: 0 (success)
+ */
+
 int main()
 {
 	char input[256];
@@ -15,15 +21,15 @@ debut:
 	printf("%s", prompt);
 	if (fgets(input, sizeof(input), stdin) == NULL)
 	{
-		if (feof(stdin))
+		if (!feof(stdin))
 		{
-			printf("\nCtrl+D pressed. Exiting.\n");
-			return (0);
+			perror("Error input");
+			exit(0);
 		}
 		else
 		{
-			perror("Error reading input");
-			exit(EXIT_FAILURE);
+			printf("\n press Ctrl+D to exit \n");
+			return (0);
 		}
 	}
 	input[strcspn(input, "\n")] = '\0';
@@ -43,21 +49,22 @@ debut:
 	pid_t ps = fork();
 	if (ps < 0)
 	{
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
+		perror("ERROR Fork");
+		exit(0);
 	}
 	else if (ps == 0)
 	{
 		if (execvp(arguments[0], arguments) == -1)
 		{
 			perror("Command not found");
-			exit(EXIT_FAILURE);
+			exit(0);
 		}
 	}
-	else
+	else if (ps > 0)
 	{
 		int status;
 		waitpid(ps, &status, 0);
-	}
 	goto debut;
+	}
+	return(0);
 }

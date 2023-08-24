@@ -3,32 +3,39 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * main - function exits the shell
+ *
+ * Return: 0 (success)
+ */
+
 void exitShell()
 {
-	printf("Exiting the shell...\n");
+	printf("Exit \n");
 	exit(0);
 }
 
 int main()
 {
-	char input[256];
+	char entr[256];
 debut:
 	printf("Shell> ");
-	fgets(input, sizeof(input), stdin);
-	size_t len = strlen(input);
+	fgets(entr, sizeof(entr), stdin);
+	size_t len = strlen(entr);
 
-	if (len > 0 && input[len - 1] == '\n')
+	if (len > 0 && entr[len - 1] == '\n')
 		{
-		input[len - 1] = '\0';
+		entr[len - 1] = '\0';
 		}
-	if (strcmp(input, "exit") == 0)
+	if (strcmp(entr, "exit") == 0)
 	{
-		exitShell(); "exit"
+		exitShell();
+		goto debut;
 	}
 	else
 	{
-		printf("Commande non reconnue : %s\n", input);
+		printf("Unrecognized command : %s\n", entr);
+		goto debut;
 	}
-	goto debut;
 	return (0);
 }

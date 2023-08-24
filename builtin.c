@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * main - this function implements the environement which prints the curent environment
+ *
+ * Return: 0 (success)
+ */
 
 int main()
 {
